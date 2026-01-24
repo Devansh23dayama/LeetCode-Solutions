@@ -15,6 +15,6 @@ class Solution {
             }
         }
         return pq.peek();
-
+        
     }
 }
