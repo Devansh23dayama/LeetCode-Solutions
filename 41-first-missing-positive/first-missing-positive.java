@@ -13,14 +13,25 @@ class Solution {
         //      }
         // }
         // return 100001;
-        Arrays.sort(nums);
-        int n = 1;
-        for(int i = 0; i<nums.length;i++){
-            if(nums[i]==n){
-                n++;
-            }
-            
+        // Arrays.sort(nums);
+        // int n = 1;
+        // for(int i = 0; i<nums.length;i++){
+        //     if(nums[i]==n){
+        //         n++;
+        //     }  
+        // }
+        // return n;
+        Set<Integer> set = new HashSet<>();
+        for(int n : nums){
+            set.add(n);
         }
-        return n;
+        int n = nums.length;
+
+        for(int k = 1;k<=n+1;k++){
+            if(!set.contains(k)){
+                return k;
+            }
+        }
+        return 0;
     }
 }
