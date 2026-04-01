@@ -2,11 +2,12 @@ class Solution {
 
     public int findNumbers(int[] nums) {
         int masterCount = 0;//even no 
-
         for (int n : nums) {
-int count = 0;// digits
+            if(n<0){
+                n=n*-1;
+            }
+            int count = 0;// digits
             while (n > 0) {
-                
                 count++;
                 n = n / 10;
             }
@@ -14,7 +15,6 @@ int count = 0;// digits
                 masterCount++;
             }
         }
-
         return masterCount;
     }
 }
