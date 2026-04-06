@@ -1,18 +1,11 @@
 class Solution {
     public int thirdMax(int[] nums) {
+ int count =0;
  Arrays.sort(nums);
- int distinct = 1;
- int n = nums.length;
- int max= nums[nums.length-1];
- for(int i = nums.length-2;i>=0;i--){
-    if(nums[i]!=nums[i+1]){
-        distinct++;
-        if(distinct==3){
-            max=nums[i];
-        }
-    }
-     
-    }
-    return max;
+ for(int i = nums.length-1;i>0;i--){
+    if(nums[i]!=nums[i-1])count++;
+    if(count==2)return nums[i-1];
+ }
+ return nums[nums.length-1];
     }
 }
