@@ -1,13 +1,11 @@
 class Solution {
     public boolean isSubsequence(String s, String t) {
-        int i = 0;
-
-        for (int j = 0; j < t.length() && i < s.length(); j++) {
-            if (s.charAt(i) == t.charAt(j)) {
-                i++;
-            }
+   int j=0;
+    for(int i = 0;j<s.length() && i<t.length();i++){
+        if(s.charAt(j)==t.charAt(i)){
+            j++;
         }
-
-        return i == s.length();
     }
+    return j==s.length();
+   }
 }
