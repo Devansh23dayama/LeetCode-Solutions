@@ -1,34 +1,37 @@
-class Solution { 
-    public ListNode removeNthFromEnd(ListNode head, int n) { 
-        if(head.next==null){return null;} 
-        int count = 0; 
-        ListNode temp = head; 
-        while (temp != null) { 
-            count++; 
-            temp = temp.next; 
-        } 
- 
-        int x = count - n + 1;   
-        if (x == 1) { 
-            return head.next; 
-        } 
-        if (x == count) { 
-            ListNode t = head; 
-            while (t.next.next != null) { 
-                t = t.next; 
-            } 
-            t.next = null; 
-            return head; 
-        } 
-        int i = 2; 
-        ListNode prev = head; 
- 
-        while (i < x) { 
-            i++; 
-            prev = prev.next; 
-        } 
- 
-        prev.next = prev.next.next; 
-        return head; 
-    } 
-} 
+class Solution {
+    int findlength(ListNode head) {
+
+        int count = 0;
+        ListNode curr = head;
+        while (curr != null) {
+            count++;
+            curr = curr.next;
+        }
+        return count;
+    }
+
+    ListNode delete(ListNode head, int deleteAt) {
+     if(head.next==null){
+        return null;
+     }
+
+        ListNode curr = head;
+        while (deleteAt > 1) {
+            curr = curr.next;
+            deleteAt--;
+        }
+        curr.next = curr.next.next;
+        return head;
+    }
+
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        int length = findlength(head);
+        int deleteAt = length - n ;
+        if(deleteAt==0){
+            return head.next;
+        }
+        head = delete(head, deleteAt);
+        return head;
+
+    }
+}
