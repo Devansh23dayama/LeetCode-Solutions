@@ -1,34 +1,40 @@
 class Solution {
-    public List<Integer> spiralOrder(int[][] matrix) {
-        List<Integer> ans = new ArrayList<>();
-        int top = 0;
-        int bottom = matrix.length - 1;
-        int left = 0;
-        int right = matrix[0].length - 1;
-        while (top <= bottom && left <= right) {    
-            for (int col = left; col <= right; col++) {
-                ans.add(matrix[top][col]);
+    public List<Integer> spiralOrder(int[][] arr) {
+        int row = arr.length;
+        int col = arr[0].length;
+        //m coloum, n-row
+        List<Integer> result = new ArrayList<>();
+        int startRow = 0;
+        int endRow = row - 1;
+        int startCol = 0;
+        int endCol = col - 1;
+
+        while (startRow <= endRow && startCol <= endCol) {
+            //Rowwise left to right means StartCol se endCol in row 
+            for (int m = startCol; m <= endCol; m++) {
+                result.add(arr[startRow][m]);
             }
-            top++;        
-            for (int row = top; row <= bottom; row++) {
-                ans.add(matrix[row][right]);
+            startRow++;
+            // Col top to bottom means starting Row to ending Row 
+            for (int m = startRow; m <= endRow; m++) {
+                result.add(arr[m][endCol]);
             }
-            right--;
-            if (top <= bottom) {
-                for (int col = right; col >= left; col--) {
-                    ans.add(matrix[bottom][col]);
-                }
-                bottom--;
+            endCol--;
+            if(startRow<=endRow){
+            //RowWide Risght to left end Row p[rint ] end Col se start col 
+            for(int m = endCol;m>=startCol;m--){
+                result.add(arr[endRow][m]);
             }
-            if (left <= right) {
-                for (int row = bottom; row >= top; row--) {
-                    ans.add(matrix[row][left]);
-                }
-                left++;
+            endRow--;
+            }
+            //Col wise bottom to top startingCol print from ending row to start Row 
+            if(startCol<=endCol){
+            for(int m=endRow; m>=startRow;m-- ){
+                result.add(arr[m][startCol]);
+            }
+            startCol++;
             }
         }
-
-
-        return ans;
+        return result;
     }
 }
